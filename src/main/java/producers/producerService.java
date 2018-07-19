@@ -1,5 +1,5 @@
 package producers;
 
-public interface producer {
+public interface producerService {
     void sendMessage(String message);
 }
