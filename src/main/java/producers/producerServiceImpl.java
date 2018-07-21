@@ -5,18 +5,14 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 
 import javax.annotation.Resource;
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.Session;
-import javax.jms.TextMessage;
-import javax.print.attribute.standard.Destination;
+import javax.jms.*;
 
 public class producerServiceImpl implements producerService{
 
     @Autowired
     JmsTemplate jmsTemplate;
 
-    @Resource(name="queueDestination")
+    @Resource(name="topicDestination")
     Destination destination;
     public void sendMessage(String message) {
         jmsTemplate.send(destination, new MessageCreator() {
@@ -27,5 +23,6 @@ public class producerServiceImpl implements producerService{
                 return textMessage;
             }
         });//目的地、创建者、
+        System.out.println("发送消息"+message);
     }
 }

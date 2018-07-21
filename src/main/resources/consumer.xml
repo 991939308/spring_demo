@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--引入公共的配置信息-->
+    <import resource="Command.xml"/>
+
+    <!--一下是消费者的配置-->
+
+    <!--配置消息监听着者-->
+    <bean id="consumerMessageListener" class="consumers.ConsumerMessageListener"/>
+    <!--消息监听的容器-->
+    <bean id="jmsConainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <!--在监听容器注入-->
+        <property name="connectionFactory" ref="connectionFactory"/><!--注入连接工厂-->
+        <property name="destination" ref="topicDestination"/><!--注入目的地-->
+        <property name="messageListener" ref="consumerMessageListener"/><!--消息监听器-->
+    </bean>
+
+
+
+
+
+</beans>
