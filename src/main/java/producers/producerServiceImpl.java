@@ -6,7 +6,7 @@ import org.springframework.jms.core.MessageCreator;
 
 import javax.annotation.Resource;
 import javax.jms.*;
-
+//生产者消费者
 public class producerServiceImpl implements producerService{
 
     @Autowired
